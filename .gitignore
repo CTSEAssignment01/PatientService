@@ -1,0 +1,15 @@
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.iml
+.DS_Store
+.idea/
+.vscode/
+.mvn/
+mvnw
+mvnw.cmd
+*.pid
+.env
