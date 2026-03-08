@@ -16,18 +16,8 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
-    @ExceptionHandler(AppointmentNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleAppointmentNotFound(AppointmentNotFoundException ex) {
-        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
-    }
-
     @ExceptionHandler(DuplicatePatientException.class)
     public ResponseEntity<Map<String, Object>> handleDuplicatePatient(DuplicatePatientException ex) {
-        return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
-    }
-
-    @ExceptionHandler(SlotNotAvailableException.class)
-    public ResponseEntity<Map<String, Object>> handleSlotNotAvailable(SlotNotAvailableException ex) {
         return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
     }
 

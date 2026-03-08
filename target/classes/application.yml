@@ -37,10 +37,6 @@ spring:
 user-service:
   url: ${USER_SERVICE_URL:https://user-service-268672367192.us-central1.run.app}
 
-# Doctor-service URL for slot reservation
-doctor-service:
-  url: ${DOCTOR_SERVICE_URL:https://doctor-service-efc3c5f3xa-uc.a.run.app}
-
 server:
   port: ${PORT:8080}
 

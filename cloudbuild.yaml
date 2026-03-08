@@ -46,7 +46,7 @@ steps:
       - "--max-instances"
       - "5"
       - "--set-env-vars"
-      - "DB_URL=jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:6543/postgres?prepareThreshold=0&sslmode=require,DB_USERNAME=postgres.bdgicssvyfumdnddxzbc,USER_SERVICE_URL=https://user-service-268672367192.us-central1.run.app,DOCTOR_SERVICE_URL=https://doctor-service-efc3c5f3xa-uc.a.run.app"
+      - "DB_URL=jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:5432/postgres?prepareThreshold=0&sslmode=require,DB_USERNAME=postgres.qrhybcbuogvgqwyvdjtp,USER_SERVICE_URL=https://user-service-268672367192.us-central1.run.app"
       - "--update-secrets"
       - "DB_PASSWORD=user-service-db-password:latest"
 
