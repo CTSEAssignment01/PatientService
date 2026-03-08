@@ -30,7 +30,7 @@ spring:
 
   sql:
     init:
-      mode: always
+      mode: never
       schema-locations: classpath:schema.sql
 
 # User-service URL for token validation
