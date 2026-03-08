@@ -7,10 +7,7 @@
   "variable": [
     { "key": "baseUrl",    "value": "http://localhost:8080",  "type": "string" },
     { "key": "token",      "value": "",                       "type": "string" },
-    { "key": "patientId",  "value": "",                       "type": "string" },
-    { "key": "appointmentId", "value": "",                    "type": "string" },
-    { "key": "doctorId",   "value": "",                       "type": "string" },
-    { "key": "slotId",     "value": "",                       "type": "string" }
+    { "key": "patientId",  "value": "",                       "type": "string" }
   ],
   "item": [
     {
@@ -114,120 +111,5 @@
           }
         }
       ]
-    },
-    {
-      "name": "Appointments",
-      "item": [
-        {
-          "name": "Book Appointment",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "var json = pm.response.json();",
-                  "if (json.id) { pm.collectionVariables.set('appointmentId', json.id); }"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" },
-              { "key": "Content-Type",  "value": "application/json" }
-            ],
-            "url": "{{baseUrl}}/api/appointments",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"doctorId\": \"{{doctorId}}\",\n  \"doctorName\": \"Dr. Smith\",\n  \"slotId\": \"{{slotId}}\",\n  \"reason\": \"Routine checkup\"\n}"
-            },
-            "description": "Books an appointment by reserving a slot in doctor-service. Saves appointmentId to collection variable."
-          }
-        },
-        {
-          "name": "Get My Appointments",
-          "request": {
-            "method": "GET",
-            "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" }
-            ],
-            "url": "{{baseUrl}}/api/appointments/my",
-            "description": "Returns all appointments for the currently authenticated user's patient profile."
-          }
-        },
-        {
-          "name": "Get Appointment by ID",
-          "request": {
-            "method": "GET",
-            "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" }
-            ],
-            "url": "{{baseUrl}}/api/appointments/{{appointmentId}}",
-            "description": "Returns a single appointment by its UUID."
-          }
-        },
-        {
-          "name": "Get Appointments by Patient (Admin/Receptionist/Doctor)",
-          "request": {
-            "method": "GET",
-            "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" }
-            ],
-            "url": "{{baseUrl}}/api/appointments/patient/{{patientId}}",
-            "description": "Returns all appointments for a specific patient. Requires ADMIN, RECEPTIONIST, or DOCTOR role."
-          }
-        },
-        {
-          "name": "Get Appointments by Doctor (Admin/Receptionist/Doctor)",
-          "request": {
-            "method": "GET",
-            "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" }
-            ],
-            "url": "{{baseUrl}}/api/appointments/doctor/{{doctorId}}",
-            "description": "Returns all appointments for a specific doctor. Requires ADMIN, RECEPTIONIST, or DOCTOR role."
-          }
-        },
-        {
-          "name": "Cancel Appointment",
-          "request": {
-            "method": "PATCH",
-            "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" }
-            ],
-            "url": "{{baseUrl}}/api/appointments/{{appointmentId}}/cancel",
-            "description": "Cancels the appointment and releases the slot back in doctor-service. Only the patient who booked can cancel."
-          }
-        },
-        {
-          "name": "Complete Appointment (Admin/Doctor)",
-          "request": {
-            "method": "PATCH",
-            "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" }
-            ],
-            "url": "{{baseUrl}}/api/appointments/{{appointmentId}}/complete",
-            "description": "Marks an appointment as COMPLETED. Requires ADMIN or DOCTOR role."
-          }
-        },
-        {
-          "name": "Add Notes to Appointment (Admin/Doctor)",
-          "request": {
-            "method": "PATCH",
-            "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" },
-              { "key": "Content-Type",  "value": "text/plain" }
-            ],
-            "url": "{{baseUrl}}/api/appointments/{{appointmentId}}/notes",
-            "body": {
-              "mode": "raw",
-              "raw": "Patient presented with mild fever. Prescribed paracetamol."
-            },
-            "description": "Adds or updates clinical notes on an appointment. Requires ADMIN or DOCTOR role."
-          }
-        }
-      ]
-    }
   ]
 }
